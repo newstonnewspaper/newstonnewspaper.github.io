@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Banners Test - Newston Newspaper</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body style="padding: 40px; background: #f9fafb;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="text-align: center; color: #1a5030; margin-bottom: 40px;">Category Banners Test</h1>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+      
+      <!-- Sports Article Preview -->
+      <div class="article-preview-wrapper">
+        <div class="category-banner sports">Sports</div>
+        <div style="
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 20px;
+          margin-top: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        " ondblclick="openArticle('article-golden-sports')" 
+           onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <h3 style="color: #1a1a1a; margin-bottom: 10px;">Sports Article Test</h3>
+          <p style="color: #6b7280; margin: 0;">Double-click to test Sports category navigation and styling.</p>
+        </div>
+      </div>
+
+      <!-- Community Article Preview -->
+      <div class="article-preview-wrapper">
+        <div class="category-banner community">Community</div>
+        <div style="
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 20px;
+          margin-top: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        " ondblclick="openArticle('article-golden-community')" 
+           onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <h3 style="color: #1a1a1a; margin-bottom: 10px;">Community Article Test</h3>
+          <p style="color: #6b7280; margin: 0;">Double-click to test Community category navigation and styling.</p>
+        </div>
+      </div>
+
+      <!-- Events Article Preview -->
+      <div class="article-preview-wrapper">
+        <div class="category-banner events">Events</div>
+        <div style="
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 20px;
+          margin-top: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        " ondblclick="openArticle('article-golden-event')" 
+           onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+          <h3 style="color: #1a1a1a; margin-bottom: 10px;">Events Article Test</h3>
+          <p style="color: #6b7280; margin: 0;">Double-click to test Events category navigation and styling.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: white; border-radius: 8px; border-left: 4px solid #1a5030;">
+      <h3 style="color: #1a5030; margin-bottom: 15px;">Test Instructions:</h3>
+      <ol style="color: #374151; line-height: 1.6;">
+        <li><strong>Visual Check:</strong> Verify that each article preview shows a colored category banner in the top-left corner with the correct colors:
+          <ul style="margin-top: 8px;">
+            <li>Sports: Deep red (#dc2626)</li>
+            <li>Community: Gold/Orange (#d97706)</li>
+            <li>Events: Navy blue (#1e40af)</li>
+          </ul>
+        </li>
+        <li><strong>Functionality Test:</strong> Double-click each article preview to open the article page</li>
+        <li><strong>Article Page Check:</strong> On the article page, verify:
+          <ul style="margin-top: 8px;">
+            <li>The category badge matches the preview banner color</li>
+            <li>The left border of the article excerpt matches the category color</li>
+            <li>The category is displayed correctly in the article meta</li>
+          </ul>
+        </li>
+        <li><strong>Responsive Test:</strong> Test the layout on mobile devices to ensure banners remain properly positioned</li>
+      </ol>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="golden.html" style="display: inline-block; background: #1a5030; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+        ← Back to Golden Articles
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double-Click Test - Newston Newspaper</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-card {
+            background: linear-gradient(135deg, #FFF8DC 0%, #F5F5DC 100%);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+        .status { 
+            background: #28a745; 
+            color: white; 
+            padding: 5px 10px; 
+            border-radius: 5px; 
+            font-size: 12px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
+        <h1 style="text-align: center; color: #1a5030;">Double-Click Test Page</h1>
+        <p style="text-align: center; color: #666;">Double-click any card below to test article navigation</p>
+        
+        <div class="test-card" ondblclick="openArticle('article-golden-sports')">
+            <h3 style="color: #B8860B; margin-bottom: 10px;">Test 1: Golden Sports Article</h3>
+            <p style="color: #8B7355;">This should open article.html?id=article-golden-sports</p>
+            <span class="status">Double-click to test</span>
+        </div>
+
+        <div class="test-card" ondblclick="openArticle('article-golden-event')">
+            <h3 style="color: #B8860B; margin-bottom: 10px;">Test 2: Golden Event Article</h3>
+            <p style="color: #8B7355;">This should open article.html?id=article-golden-event</p>
+            <span class="status">Double-click to test</span>
+        </div>
+
+        <div class="test-card" ondblclick="openArticle('article-golden-community')">
+            <h3 style="color: #B8860B; margin-bottom: 10px;">Test 3: Golden Community Article</h3>
+            <p style="color: #8B7355;">This should open article.html?id=article-golden-community</p>
+            <span class="status">Double-click to test</span>
+        </div>
+
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 30px;">
+            <h3>Debug Information:</h3>
+            <button onclick="debugTest()" style="background: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Run Debug Test</button>
+            <div id="debug-output" style="margin-top: 15px; font-family: monospace; background: #fff; padding: 10px; border-radius: 5px;"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="golden.html" style="background: #1a5030; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: 500; margin: 5px;">← Test on Golden Page</a>
+            <a href="index.html" style="background: #666; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: 500; margin: 5px;">← Back to Home</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function debugTest() {
+            const output = document.getElementById('debug-output');
+            let result = '';
+            
+            try {
+                result += 'Script loaded: ✓\n';
+                
+                if (typeof openArticle === 'function') {
+                    result += 'openArticle function exists: ✓\n';
+                } else {
+                    result += 'openArticle function missing: ✗\n';
+                }
+                
+                if (typeof articles === 'object' && articles) {
+                    result += 'Articles object exists: ✓\n';
+                    result += 'Number of articles: ' + Object.keys(articles).length + '\n';
+                    result += 'Sample articles: ' + Object.keys(articles).slice(0, 3).join(', ') + '\n';
+                } else {
+                    result += 'Articles object missing: ✗\n';
+                }
+                
+                if (typeof getUrlParameter === 'function') {
+                    result += 'getUrlParameter function exists: ✓\n';
+                } else {
+                    result += 'getUrlParameter function missing: ✗\n';
+                }
+                
+                result += '\nTesting openArticle function...\n';
+                console.log('Manual test: openArticle("article-golden-sports")');
+                
+            } catch (error) {
+                result += 'Error during testing: ' + error.message + '\n';
+            }
+            
+            output.textContent = result;
+        }
+
+        // Auto-run debug on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(debugTest, 500);
+        });
+    </script>
+</body>
+</html>
