@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Articles - Newston Newspaper</title>
+  <meta name="description" content="Featured articles from Newton College's premier student publication.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Golden Articles Specific Styles */
+    :root {
+      --golden-primary: #D4AF37;
+      --golden-dark: #B8860B;
+      --golden-light: #F4E4BC;
+      --golden-pale: #FFF8DC;
+      --golden-accent: #FFD700;
+    }
+
+    .golden-article-card {
+      background: linear-gradient(135deg, var(--golden-pale) 0%, #F5F5DC 100%);
+      border: 2px solid var(--golden-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .golden-article-card::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, var(--golden-primary) 30%, transparent 70%);
+      opacity: 0.1;
+    }
+
+    .golden-article-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+      border-color: var(--golden-accent);
+    }
+
+    .golden-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--golden-primary);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 25px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .golden-badge i {
+      margin-right: var(--space-sm);
+    }
+
+    .golden-article-title {
+      color: var(--golden-dark);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-lg);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .golden-article-excerpt {
+      color: #8B7355;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+
+    .golden-article-meta {
+      color: var(--golden-primary);
+      font-weight: 600;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .golden-recognition {
+      background: rgba(212, 175, 55, 0.1);
+      border-left: 4px solid var(--golden-primary);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      border-radius: var(--radius-md);
+      font-style: italic;
+      color: var(--golden-dark);
+    }
+
+    .archive-golden {
+      margin: var(--space-3xl) 0;
+    }
+
+    /* Enhanced section header styling for golden page */
+    .section-header-enhanced {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title-large {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-accent-line {
+      height: 4px;
+      border-radius: var(--radius-sm);
+      width: 80px;
+    }
+
+    .golden-archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .archive-golden-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      transition: var(--transition-base);
+      position: relative;
+    }
+
+    .archive-golden-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--golden-primary), var(--golden-accent));
+    }
+
+    .archive-golden-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .archive-golden-content {
+      padding: var(--space-xl);
+    }
+
+    .archive-golden-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .archive-golden-title {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      line-height: 1.4;
+    }
+
+    .archive-golden-excerpt {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+
+    .archive-read-more {
+      color: var(--golden-primary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: var(--transition-base);
+    }
+
+    .archive-read-more:hover {
+      color: var(--golden-dark);
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <!-- Logo Section -->
+    <div class="logo-text" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 0 auto; width: 100%; padding: var(--space-2xl) 0;">
+       <h1 class="newspaper-title" style="margin: 0;">NEWSTON</h1>
+       <p class="newspaper-subtitle" style="margin: 0;">NEWTON COLLEGE STUDENT NEWSPAPER</p>
+       <div class="established" style="margin-top: 4px;">ESTABLISHED 2020 • EXCELLENCE IN STUDENT JOURNALISM</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-navigation">
+      <div class="container">
+        <ul class="nav-menu">
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="sports.html"><i class="fas fa-running"></i> Sports</a></li>
+          <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+          <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+          <li><a href="golden.html" class="active"><i class="fas fa-star"></i> Golden Articles</a></li>
+          <li><a href="join.html"><i class="fas fa-edit"></i> Join Us!</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Featured Golden Articles -->
+      <section class="featured-sports-section">
+        <div class="section-header-enhanced">
+          <div class="section-title-wrapper">
+             <h2 class="section-title-large" style="color: var(--golden-dark);">Golden Articles</h2>
+            <div class="section-subtitle">Outstanding journalism of the week</div>
+          </div>
+          <div class="section-accent-line"></div>
+        </div>
+
+        <div class="golden-archive-grid">
+          <!-- Golden Community Article -->
+          <div class="article-preview-wrapper">
+            <div class="category-banner community">Community</div>
+            <article class="golden-article-card" ondblclick="openArticle('article-new-chapter-classrooms')">
+              <div class="golden-badge">
+                <i class="fas fa-trophy"></i>
+                <span>Golden Community</span>
+              </div>
+              <h3 class="golden-article-title">A New Chapter in Our Classrooms</h3>
+              <p class="golden-article-excerpt">Exploring the evolving educational landscape at Newton College and the innovative approaches teachers are taking to enhance student learning. Outstanding writing that captures the transformation of our educational experience.</p>
+              <div class="golden-article-meta">
+                <i class="fas fa-calendar"></i>
+                <span>October 27, 2025</span>
+                <span>•</span>
+                <span>By Constantino Díaz, Form IV</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Golden Events Article -->
+          <div class="article-preview-wrapper">
+            <div class="category-banner events">Events</div>
+            <article class="golden-article-card" ondblclick="openArticle('article-no-destiny-limits-play')">
+              <div class="golden-badge">
+                <i class="fas fa-trophy"></i>
+                <span>Golden Events</span>
+              </div>
+              <h3 class="golden-article-title">No Destiny, No Limits: Upper School's 2025 Play</h3>
+              <p class="golden-article-excerpt">A theatrical masterpiece that captivated audiences with its powerful message about choice, destiny, and the limitless potential within every student. Exceptional coverage of our dramatic arts program.</p>
+              <div class="golden-article-meta">
+                <i class="fas fa-calendar"></i>
+                <span>October 26, 2025</span>
+                <span>•</span>
+                <span>By Alma Flores, Form III</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Golden Archive Section -->
+      <section class="archive-golden">
+        <div class="section-header-enhanced">
+          <div class="section-title-wrapper">
+            <h2 class="section-title-large">Golden Archive</h2>
+            <div class="section-subtitle">Previous award-winning articles and featured stories</div>
+          </div>
+          <div class="section-accent-line"></div>
+        </div>
+
+        <div class="golden-archive-grid">
+
+          <div class="article-preview-wrapper">
+            <div class="category-banner events">Events</div>
+            <article class="archive-golden-card" ondblclick="openArticle('article-archive-2')">
+              <div class="archive-golden-content">
+                <div class="archive-golden-meta">
+                  <i class="fas fa-trophy" style="color: var(--golden-primary);"></i>
+                  <span>August 15, 2025</span>
+                  <span>•</span>
+                  <span>8 min read</span>
+                </div>
+                <h3 class="archive-golden-title">ARTICLE</h3>
+                <p class="archive-golden-excerpt">ARTICLE</p>
+                <div class="archive-read-more">
+                  <span>Read Golden Article</span>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="article-preview-wrapper">
+            <div class="category-banner sports">Sports</div>
+            <article class="archive-golden-card" ondblclick="openArticle('article-archive-3')">
+              <div class="archive-golden-content">
+                <div class="archive-golden-meta">
+                  <i class="fas fa-trophy" style="color: var(--golden-primary);"></i>
+                  <span>July 28, 2025</span>
+                  <span>•</span>
+                  <span>5 min read</span>
+                </div>
+                <h3 class="archive-golden-title">ARTICLE</h3>
+                <p class="archive-golden-excerpt">ARTICLE</p>
+                <div class="archive-read-more">
+                  <span>Read Golden Article</span>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="article-preview-wrapper">
+            <div class="category-banner community">Community</div>
+            <article class="archive-golden-card" ondblclick="openArticle('article-archive-4')">
+              <div class="archive-golden-content">
+                <div class="archive-golden-meta">
+                  <i class="fas fa-trophy" style="color: var(--golden-primary);"></i>
+                  <span>June 10, 2025</span>
+                  <span>•</span>
+                  <span>7 min read</span>
+                </div>
+                <h3 class="archive-golden-title">ARTICLE</h3>
+                <p class="archive-golden-excerpt">ARTICLE</p>
+                <div class="archive-read-more">
+                  <span>Read Golden Article</span>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="article-preview-wrapper">
+            <div class="category-banner events">Events</div>
+            <article class="archive-golden-card" ondblclick="openArticle('article-archive-5')">
+              <div class="archive-golden-content">
+                <div class="archive-golden-meta">
+                  <i class="fas fa-trophy" style="color: var(--golden-primary);"></i>
+                  <span>May 22, 2025</span>
+                  <span>•</span>
+                  <span>4 min read</span>
+                </div>
+                <h3 class="archive-golden-title">ARTICLE</h3>
+                <p class="archive-golden-excerpt">ARTICLE</p>
+                <div class="archive-read-more">
+                  <span>Read Golden Article</span>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="article-preview-wrapper">
+            <div class="category-banner sports">Sports</div>
+            <article class="archive-golden-card" ondblclick="openArticle('article-archive-6')">
+              <div class="archive-golden-content">
+                <div class="archive-golden-meta">
+                  <i class="fas fa-trophy" style="color: var(--golden-primary);"></i>
+                  <span>April 18, 2025</span>
+                  <span>•</span>
+                  <span>6 min read</span>
+                </div>
+                <h3 class="archive-golden-title">ARTICLE</h3>
+                <p class="archive-golden-excerpt">ARTICLE</p>
+                <div class="archive-read-more">
+                  <span>Read Golden Article</span>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About Newston</h4>
+          <p>Newton College's premier student-led newspaper, connecting our community through excellence in journalism.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Sections</h4>
+          <ul>
+            <li><a href="sports.html">Sports</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="golden.html">Golden Articles</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="join.html">Join Our Team</a></li>
+            <li><a href="#">Submit a Story</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Editorial Guidelines</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e505b494d4a51507e505b494a51505d5152525b595b105b5a4b">[email&#160;protected]</a></p>
+          <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-map-marker-alt"></i> Newton College Campus<br>Student Media Center</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Newston Newspaper - Newton College Student Publication | Excellence in Student Journalism Since 2020</p>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+</body>
+</html>
