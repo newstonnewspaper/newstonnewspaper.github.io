@@ -440,7 +440,7 @@ const articles = {
         <h2>What He Hopes to Achieve</h2>
         <p>Looking ahead, Mr. Jody hopes to stay at Newton for a long time. He enjoys his work here, and wants to continue watching his students grow and succeed throughout their High School years. He also hopes to fully immerse himself in Peruvian culture and language, building meaningful connections both inside and outside the classroom.</p>
         
-        <p><em>Comment: overall really nice writing, it's light and enjoyable. I didn't know if the headers are necessary. You could replace them with small introductory sentences like in the last one. "We asked Mr. Jody of what he hoped to achieve, and what he hopes to further achieve…"</em></p>`
+        <p><em> . </em></p>`
     },
 
     'article-no-destiny-limits-play': {
